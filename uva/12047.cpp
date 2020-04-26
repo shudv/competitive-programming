@@ -1,50 +1,4 @@
-#pragma region header
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-typedef unsigned long long ull;
-typedef pair<int, int> ii;
-typedef vector<int> vi;
-typedef vector<ii> vii;
-typedef queue<int> qi;
-typedef queue<ii> qii;
-typedef priority_queue<int> pqi;
-typedef vector<vi> vvi;
-typedef vector<vii> vvii;
-typedef set<int> si;
-typedef map<string, int> msi;
-
-#define NL "\n"
-#define PAIR make_pair
-#define INF 2000000000
-
-#define REP(i, a, b) for (int i = int(a); i < int(b); i++)
-#define REPI(i, a, b) for (int i = int(a); i <= int(b); i++)
-#define TR(c, it) for (auto const &it : c)
-#define ALL(c) c.begin(), c.end()
-#define TESTS            \
-    int tests;           \
-    scanf("%d", &tests); \
-    REPI(test_index, 1, tests)
-
-#define DEBUGC(c, w)                                                            \
-    {                                                                           \
-        cout << "[ ";                                                           \
-        TR(debug_it, c) { cout << setfill(' ') << setw(w) << debug_it << " "; } \
-        cout << "]" << NL;                                                      \
-    }
-#define DEBUGA(a, n, w)                                                              \
-    {                                                                                \
-        cout << "[ ";                                                                \
-        REP(debug_x, 0, n) { cout << setfill(' ') << setw(w) << a[debug_x] << " "; } \
-        cout << "]" << NL;                                                           \
-    }
-#define DEBUG2A(a, m, n, w)                              \
-    {                                                    \
-        REP(debug_y, 0, m) { DEBUGA(a[debug_y], n, w); } \
-    }
-#pragma endregion
+#include "library/common.h"
 
 typedef pair<int, ii> queue_vertex;
 class vertex_compare
@@ -95,7 +49,7 @@ int main()
                     max_toll = max(max_toll, toll);
                     //cout<<"found_target: "<<max_toll<<" "<<toll<<" "<<NL;
                 }
-                TR(G[u], vw)
+                TR(vw, G[u])
                 {
                     int v = vw.first;
                     int w = vw.second;

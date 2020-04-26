@@ -1,26 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef vector<int> vi;
-typedef queue<int> qi;
-typedef priority_queue<int> pqi;
-typedef vector<vi> vvi;
-typedef pair<int, int> ii;
-typedef unsigned long long int ulli;
-typedef long long int ll;
-
-#define get(n) \
-    int(n);    \
-    scanf("%d", &(n))
-#define get2(n, m) \
-    int(n), (m);   \
-    scanf("%d %d", &(n), &(m))
-#define get3(n, m, k) \
-    int(n), (m), (k); \
-    scanf("%d %d %d", &(n), &(m), &(k))
-#define foreach(i, t) for (typeof(t.begin()) i = t.begin(); i != t.end(); i++)
-#define all(c) c.begin(), c.end()
-#define TESTS get(tests); while (tests--)
+#include "library/common.h"
 
 void topological_sort(const vvi &G, vi &in_degree, vi &sorted_vertices)
 {
@@ -55,7 +33,8 @@ void topological_sort(const vvi &G, vi &in_degree, vi &sorted_vertices)
 
 int main()
 {
-    get(T);
+    int T;
+    scanf("%d", &T);
     cin.ignore();
     cin.ignore();
 
@@ -63,8 +42,8 @@ int main()
     {
         vvi G(26);
         vi W(26), in_degree(26);
-        fill(all(in_degree), 0);
-        fill(all(W), 0);
+        fill(ALL(in_degree), 0);
+        fill(ALL(W), 0);
 
         string line;
         while (getline(cin, line) && line != "")

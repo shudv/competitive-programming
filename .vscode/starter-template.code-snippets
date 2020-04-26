@@ -2,7 +2,7 @@
 	"Common header": {
 	 	"prefix": "!code",
 	 	"body": [
-			"#pragma region header",
+			"#pragma region common_header",
 			"",
 			"#include<bits/stdc++.h>",
 			"using namespace std;",
@@ -14,7 +14,7 @@
 			"typedef priority_queue<int>  pqi;", 
 			"typedef vector<vi>           vvi;",
 			"typedef set<int>             si;",
-			"typedef map<int,int>         msii;",
+			"typedef map<int,int>         mii;",
 			"typedef map<string,int>      msi;",
 			"typedef pair<int,int>        ii;",
 			"typedef vector<ii>           vii;", 

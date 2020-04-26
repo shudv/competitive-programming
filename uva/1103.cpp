@@ -1,25 +1,4 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-typedef long long           ll;
-typedef unsigned long long  ull;
-typedef pair<int,int>       ii;
-typedef vector<int>         vi;
-typedef queue<int>          qi;
-typedef queue<ii>           qii;
-typedef priority_queue<int> pqi;
-typedef vector<vi>          vvi;
-typedef set<int>            si;
-typedef map<string,int>     msi;
-
-#define IN(n)       scanf("%d",&(n))
-#define REP(i,a,b)  for(int i=int(a); i<int(b); i++)
-#define REPI(i,a,b) for(int i=int(a); i<=int(b); i++)
-#define TR(c,it)    for (typeof((c).begin()) it=(c).begin(); it!=(c).end(); it++)
-#define ALL(c)      c.begin(), c.end()
-#define TESTS       int tests; IN(tests); REPI(test_index, 1, tests)
-
-#define NL "\n"
+#include "library/common.h"
 
 #define MAX_H 205
 #define MAX_W 205
