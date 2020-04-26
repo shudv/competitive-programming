@@ -1,29 +1,31 @@
-#include "library/common.h"
+#include "../common.h"
 
 #define MAXN 16
 int N;
-double dist[MAXN][MAXN], dp[1<<16];
+double dist[MAXN][MAXN], dp[1 << 16];
 
 double solve(int mask)
 {
-    if (dp[mask] > -0.5) {
+    if (dp[mask] > -0.5)
+    {
         return dp[mask];
     }
 
-    if (mask == ((1<<(2*N)) - 1)) {
+    if (mask == ((1 << (2 * N)) - 1))
+    {
         return dp[mask] = 0;
     }
 
     double matching_value = 32767.0 * 32767.0;
-    REP(i, 0, 2*N)
+    REP(i, 0, 2 * N)
     {
-        if((mask & (1<<i)) == 0)
+        if ((mask & (1 << i)) == 0)
         {
-            REP(j, i+1, 2*N)
+            REP(j, i + 1, 2 * N)
             {
-                if ((mask & (1<<j)) == 0)
+                if ((mask & (1 << j)) == 0)
                 {
-                    matching_value = min(matching_value, dist[i][j] + solve(mask | 1<<i | 1<<j));
+                    matching_value = min(matching_value, dist[i][j] + solve(mask | 1 << i | 1 << j));
                 }
             }
         }
@@ -38,10 +40,11 @@ int main()
     do
     {
         scanf("%d", &N);
-        if(N==0) break;
+        if (N == 0)
+            break;
 
         vi x(MAXN), y(MAXN);
-        REP(i, 0, 2*N)
+        REP(i, 0, 2 * N)
         {
             char name[100];
             scanf("%s", name);
@@ -51,18 +54,18 @@ int main()
             y[i] = Y;
         }
 
-        REP(i, 0, 2*N)
-        REP(j, 0, 2*N)
+        REP(i, 0, 2 * N)
+        REP(j, 0, 2 * N)
         {
-            dist[i][j] = sqrt(((x[i]-x[j])*(x[i]-x[j])) + ((y[i]-y[j])*(y[i]-y[j])));
+            dist[i][j] = sqrt(((x[i] - x[j]) * (x[i] - x[j])) + ((y[i] - y[j]) * (y[i] - y[j])));
         }
 
-        for (int i=0;i<(1<<(2*N));i++) {
+        for (int i = 0; i < (1 << (2 * N)); i++)
+        {
             dp[i] = -1.0;
         }
 
         printf("Case %d: %.2lf\n", caseNo++, solve(0));
-    }
-    while(true);
+    } while (true);
     return 0;
 }

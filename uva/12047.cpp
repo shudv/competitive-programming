@@ -1,4 +1,4 @@
-#include "library/common.h"
+#include "../common.h"
 
 typedef pair<int, ii> queue_vertex;
 class vertex_compare
@@ -8,7 +8,7 @@ public:
     {
         ii dt1 = qv1.second;
         ii dt2 = qv2.second;
-        return dt1.first == dt2.first ? dt1.second > dt2.second : dt1.first < dt2.first; 
+        return dt1.first == dt2.first ? dt1.second > dt2.second : dt1.first < dt2.first;
     }
 };
 
@@ -18,7 +18,7 @@ int main()
     {
         int N, M, s, t, p;
         scanf("%d %d %d %d %d", &N, &M, &s, &t, &p);
-        vvii G(N+1);
+        vvii G(N + 1);
         while (M--)
         {
             int u, v, c;
@@ -27,7 +27,7 @@ int main()
             //cout<<"push: "<<u<<" "<<v<<" "<<c<<NL;
         }
 
-        vii dist_toll(N+1, PAIR(INF, -1));
+        vii dist_toll(N + 1, PAIR(INF, -1));
         priority_queue<queue_vertex, vector<queue_vertex>, vertex_compare> pq;
         dist_toll[s] = PAIR(0, -1);
         pq.push(PAIR(s, dist_toll[s]));
@@ -35,7 +35,8 @@ int main()
         int max_toll = -1;
         while (!pq.empty())
         {
-            auto top = pq.top();pq.pop();
+            auto top = pq.top();
+            pq.pop();
             int u = top.first;
             int d = top.second.first;
             int toll = top.second.second;
@@ -44,7 +45,7 @@ int main()
 
             if (d < p)
             {
-                if (u==t)
+                if (u == t)
                 {
                     max_toll = max(max_toll, toll);
                     //cout<<"found_target: "<<max_toll<<" "<<toll<<" "<<NL;

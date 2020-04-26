@@ -1,15 +1,16 @@
-#include "library/common.h"
+#include "../common.h"
 
 int main()
 {
     string is;
     bool quote_opened = false;
 
-    while(getline(cin, is))
+    while (getline(cin, is))
     {
-        if (is.empty()) break;
+        if (is.empty())
+            break;
         string os;
-        for (int i = 0; i<is.length(); i++)
+        for (int i = 0; i < is.length(); i++)
         {
             if (is[i] == '"')
             {
@@ -21,7 +22,7 @@ int main()
                 os.push_back(is[i]);
             }
         }
-        cout<<os<<endl;
+        cout << os << endl;
     }
     return 0;
 }

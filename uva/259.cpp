@@ -1,4 +1,4 @@
-#include "library/common.h"
+#include "../common.h"
 
 typedef struct
 {
@@ -108,7 +108,7 @@ void solve()
 {
     // Add a common target vertex for all machines
     REPI(c, '0', '9')
-        add_edge({machine_index(c), 1, 1, 0});
+    add_edge({machine_index(c), 1, 1, 0});
 
     int flow = compute_max_flow();
     if (flow == application_count)
@@ -150,7 +150,7 @@ int main()
         if (line == "")
         {
             solve();
-            
+
             // re-init data structures for next case
             G.assign(1000, vi());
             edges.assign(0, {});

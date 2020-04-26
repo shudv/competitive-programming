@@ -1,4 +1,4 @@
-#include "library/common.h"
+#include "../common.h"
 
 void topological_sort(const vvi &G, vi &in_degree, vi &sorted_vertices)
 {
@@ -89,17 +89,17 @@ int main()
         }
 
         int max = -1;
-        for (int i=0; i<26; i++)
+        for (int i = 0; i < 26; i++)
         {
             if (critical[i] > max)
             {
                 max = critical[i];
             }
         }
-        cout<<max<<"\n";
-        if (T>0)
+        cout << max << "\n";
+        if (T > 0)
         {
-            cout<<"\n";
+            cout << "\n";
         }
     }
     return 0;

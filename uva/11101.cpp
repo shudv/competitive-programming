@@ -1,10 +1,10 @@
-#include "library/common.h"
+#include "../common.h"
 
 #define MAXN 2005
 int dist[MAXN][MAXN];
-vii neighbours = { PAIR(0, -1), PAIR(-1, 0), PAIR(+1, 0), PAIR(0, +1)};
+vii neighbours = {PAIR(0, -1), PAIR(-1, 0), PAIR(+1, 0), PAIR(0, +1)};
 
-int bfs(vii& mall)
+int bfs(vii &mall)
 {
     qii Q;
     TR(it, mall)
@@ -17,18 +17,19 @@ int bfs(vii& mall)
         Q.pop();
 
         int distance = dist[next.first][next.second];
-        int neighbour_least_distance = distance+1;
+        int neighbour_least_distance = distance + 1;
         TR(neighbour, neighbours)
         {
             int neighbour_x = next.first + neighbour.first;
             int neighbour_y = next.second + neighbour.second;
 
-            if (neighbour_x >=0 && neighbour_x < MAXN && neighbour_y >=0 && neighbour_y < MAXN)
+            if (neighbour_x >= 0 && neighbour_x < MAXN && neighbour_y >= 0 && neighbour_y < MAXN)
             {
                 int neighbour_distance = dist[neighbour_x][neighbour_y];
-            
+
                 // If other mall is found return distance
-                if (neighbour_distance == -1) return neighbour_least_distance;
+                if (neighbour_distance == -1)
+                    return neighbour_least_distance;
 
                 // Else update distance if it is smaller
                 if (neighbour_least_distance < neighbour_distance)
@@ -40,8 +41,7 @@ int bfs(vii& mall)
                 }
             }
         }
-    }
-    while(!Q.empty());
+    } while (!Q.empty());
     return -1;
 }
 
@@ -49,13 +49,16 @@ int main()
 {
     do
     {
-        REP(i, 0, MAXN) REP(j, 0, MAXN) dist[i][j] = 9999;
+        REP(i, 0, MAXN)
+        REP(j, 0, MAXN) dist[i][j] = 9999;
 
         //print();
         // source mall
         vii source_mall;
-        int n; cin >> n;
-        if (n == 0) return 0;
+        int n;
+        cin >> n;
+        if (n == 0)
+            return 0;
 
         while (n--)
         {
@@ -67,11 +70,11 @@ int main()
         }
 
         // target mall
-        cin>>n;
-        while(n--)
+        cin >> n;
+        while (n--)
         {
-            int x,y;
-            cin>>x>>y;
+            int x, y;
+            cin >> x >> y;
             // mark target veriices distinctly
             dist[x][y] = -1;
         }
@@ -79,7 +82,6 @@ int main()
         // DEBUG2A(dist, 5, 5, 5);
         printf("%d\n", bfs(source_mall));
         //print();
-    }
-    while (true);
+    } while (true);
     return 0;
 }

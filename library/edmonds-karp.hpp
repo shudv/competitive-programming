@@ -1,4 +1,4 @@
-#include "common.h"
+#include "../common.h"
 
 typedef struct
 {
@@ -45,7 +45,7 @@ int compute_max_flow(
                     bool is_real_edge = (edge.from == found_vertex);
                     int next_vertex = is_real_edge ? edge.to : edge.from;
                     int residual_capacity = is_real_edge ? (edge.capacity - edge.flow) : edge.flow;
-                    
+
                     int residual_flow = min(maximum_flow, residual_capacity);
                     if (residual_flow > 0 && !HAS(edge_leading_to, next_vertex))
                     {
@@ -78,8 +78,9 @@ int compute_max_flow(
                 break;
             }
         }
-        
-        if (increase_in_flow == 0) break;
+
+        if (increase_in_flow == 0)
+            break;
         flow += increase_in_flow;
     }
     return flow;
