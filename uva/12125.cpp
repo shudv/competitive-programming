@@ -179,7 +179,6 @@ int main()
 
         if (accessible_floes.size() > 0)
         {
-            sort(ALL(accessible_floes));
             printf("%d", accessible_floes[0]);
             REP(i, 1, accessible_floes.size())
                 printf(" %d", accessible_floes[i]);
