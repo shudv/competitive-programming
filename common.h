@@ -21,7 +21,7 @@ typedef vector<vii>          vvii;
 #define PAIR                 make_pair
 #define REP(i,a,b)           for(int i=int(a); i<int(b); i++)
 #define REPI(i, a, b)        for (int i = int(a); i <= int(b); i++)
-#define TR(it, c)            for (auto const &it : c)
+#define TR(it, c)            for (auto &it : c)
 #define ALL(c)               c.begin(), c.end()
 #define TESTS                int tests; scanf("%d", &tests); REPI(test_index, 1, tests)
 #define FIELD(w)             setfill(' ') << setw(w)
