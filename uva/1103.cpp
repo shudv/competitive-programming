@@ -45,7 +45,7 @@ void mark_index(int a, int b, int index)
 {
     qii Q;
     I[a][b] = index;
-    Q.push(make_pair(a, b));
+    Q.push(PAIR(a, b));
 
     while (!Q.empty())
     {
@@ -56,7 +56,7 @@ void mark_index(int a, int b, int index)
             if (i >= 0 && i < H && j >= 0 && j < W && !(i == next.first && j == next.second) && I[i][j] == 0)
             {
                 I[i][j] = index;
-                Q.push(make_pair(i, j));
+                Q.push(PAIR(i, j));
             }
         }
     }
@@ -71,7 +71,6 @@ void mark()
         if (I[i][j] == 0)
         {
             next_index++;
-            // cout<<"mark: "<<i<<","<<j<<":"<<next_index<<NL;
             mark_index(i, j, next_index);
         }
     }
@@ -82,7 +81,7 @@ int traverse_glyph(int a, int b)
     si holes;
     qii Q;
     I[a][b] = 0;
-    Q.push(make_pair(a, b));
+    Q.push(PAIR(a, b));
 
     while (!Q.empty())
     {
@@ -99,7 +98,7 @@ int traverse_glyph(int a, int b)
                 else if (I[i][j] == 1)
                 {
                     I[i][j] = 0;
-                    Q.push(make_pair(i, j));
+                    Q.push(PAIR(i, j));
                 }
             }
         }
