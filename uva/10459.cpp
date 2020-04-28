@@ -78,13 +78,13 @@ int main()
     while (scanf("%d", &n) == 1)
     {
         vvi G(n + 1);
-        REPI(u, 1, n)
+        REPI(u, n)
         {
-            IN(m);
-            REP(j, 0, m)
+            GET(m);
+            REP(j, m)
             {
-                IN(v);
-                G[u].push_back(v);
+                GET(v);
+                G[u].PUSH(v);
             }
         }
 
@@ -101,7 +101,7 @@ int main()
         vi worst_roots;
         int max_depth = 0;
 
-        REPI(i, 1, n)
+        REPI(i, n)
         {
             int h = depth_as_root[i];
 
@@ -109,22 +109,22 @@ int main()
             {
                 max_depth = h;
                 worst_roots.clear();
-                worst_roots.push_back(i);
+                worst_roots.PUSH(i);
             }
             else if (h == max_depth)
             {
-                worst_roots.push_back(i);
+                worst_roots.PUSH(i);
             }
 
             if (h < min_depth)
             {
                 min_depth = h;
                 best_roots.clear();
-                best_roots.push_back(i);
+                best_roots.PUSH(i);
             }
             else if (h == min_depth)
             {
-                best_roots.push_back(i);
+                best_roots.PUSH(i);
             }
         }
 

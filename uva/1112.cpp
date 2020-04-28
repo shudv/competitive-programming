@@ -11,8 +11,7 @@ public:
 
 int main()
 {
-    int TEST;
-    scanf("%d", &TEST);
+    GET(TEST);
     cin.ignore();
     cin.ignore();
 
@@ -27,7 +26,7 @@ int main()
         {
             int a, b, w;
             cin >> a >> b >> w;
-            G[b].push_back(PAIR(a, w));
+            G[b].PUSH(PAIR(a, w));
         }
 
         vi dist(N + 1, INF);
@@ -38,8 +37,7 @@ int main()
 
         while (!pq.empty())
         {
-            ii top = pq.top();
-            pq.pop();
+            ii top = TOP(pq);
             int d = top.first;
             int u = top.second;
             if (dist[u] == d)
@@ -59,7 +57,7 @@ int main()
 
         // DEBUGC(dist, 10);
         int count = 0;
-        REPI(i, 1, N)
+        REPI(i, N)
         if (dist[i] <= T) count++;
         printf("%d\n", count);
         if (TEST > 0)

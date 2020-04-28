@@ -14,17 +14,15 @@ public:
 
 int main()
 {
-    TESTS
+    CASE
     {
-        int N, M, s, t, p;
-        scanf("%d %d %d %d %d", &N, &M, &s, &t, &p);
+        GET(N, M);
+        GET(s, t, p);
         vvii G(N + 1);
         while (M--)
         {
-            int u, v, c;
-            scanf("%d %d %d", &u, &v, &c);
-            G[u].push_back(PAIR(v, c));
-            //cout<<"push: "<<u<<" "<<v<<" "<<c<<NL;
+            GET(u, v, c);
+            G[u].PUSH(PAIR(v, c));
         }
 
         vii dist_toll(N + 1, PAIR(INF, -1));
@@ -35,13 +33,10 @@ int main()
         int max_toll = -1;
         while (!pq.empty())
         {
-            auto top = pq.top();
-            pq.pop();
+            auto top = TOP(pq);
             int u = top.first;
             int d = top.second.first;
             int toll = top.second.second;
-
-            //cout<<"pop: "<<u<<" "<<d<<" "<<toll<<" "<<p<<NL;
 
             if (d < p)
             {

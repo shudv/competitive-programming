@@ -14,8 +14,7 @@ void topological_sort(const vvi &G, vi &in_degree, vi &sorted_vertices)
 
     while (!Q.empty())
     {
-        int next = Q.front();
-        Q.pop();
+        int next = FRONT(Q);
 
         for (int i = 0; i < G[next].size(); i++)
         {
@@ -27,14 +26,13 @@ void topological_sort(const vvi &G, vi &in_degree, vi &sorted_vertices)
             }
         }
 
-        sorted_vertices.push_back(next);
+        sorted_vertices.PUSH(next);
     }
 }
 
 int main()
 {
-    int T;
-    scanf("%d", &T);
+    GET(T);
     cin.ignore();
     cin.ignore();
 
@@ -60,7 +58,7 @@ int main()
             for (int i = 0; i < edges.size(); i++)
             {
                 int from = edges[i] - 'A';
-                G[from].push_back(vertexIndex);
+                G[from].PUSH(vertexIndex);
             }
         }
 

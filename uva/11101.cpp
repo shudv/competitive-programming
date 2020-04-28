@@ -13,8 +13,7 @@ int bfs(vii &mall)
     }
     do
     {
-        ii next = Q.front();
-        Q.pop();
+        ii next = FRONT(Q);
 
         int distance = dist[next.first][next.second];
         int neighbour_least_distance = distance + 1;
@@ -49,14 +48,13 @@ int main()
 {
     do
     {
-        REP(i, 0, MAXN)
-        REP(j, 0, MAXN) dist[i][j] = 9999;
+        REP(i, MAXN)
+        REP(j, MAXN) dist[i][j] = 9999;
 
         //print();
         // source mall
         vii source_mall;
-        int n;
-        cin >> n;
+        GET(n);
         if (n == 0)
             return 0;
 
@@ -64,7 +62,7 @@ int main()
         {
             int x, y;
             cin >> x >> y;
-            source_mall.push_back(PAIR(x, y));
+            source_mall.PUSH(PAIR(x, y));
             // Mall's vertices are at 0 distance from itself
             dist[x][y] = 0;
         }

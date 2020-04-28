@@ -17,7 +17,7 @@ double solve(int mask)
     }
 
     double matching_value = 32767.0 * 32767.0;
-    REP(i, 0, 2 * N)
+    REP(i, 2 * N)
     {
         if ((mask & (1 << i)) == 0)
         {
@@ -44,7 +44,7 @@ int main()
             break;
 
         vi x(MAXN), y(MAXN);
-        REP(i, 0, 2 * N)
+        REP(i, 2 * N)
         {
             char name[100];
             scanf("%s", name);
@@ -54,8 +54,8 @@ int main()
             y[i] = Y;
         }
 
-        REP(i, 0, 2 * N)
-        REP(j, 0, 2 * N)
+        REP(i, 2 * N)
+        REP(j, 2 * N)
         {
             dist[i][j] = sqrt(((x[i] - x[j]) * (x[i] - x[j])) + ((y[i] - y[j]) * (y[i] - y[j])));
         }

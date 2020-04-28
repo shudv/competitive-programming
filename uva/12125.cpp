@@ -97,9 +97,9 @@ int compute_max_flow(
 inline void add_edge(vvi &G, vector<edge> &edges, const edge &e)
 {
     int edge_index = edges.size();
-    edges.push_back(e);
-    G[e.from].push_back(edge_index);
-    G[e.to].push_back(edge_index);
+    edges.PUSH(e);
+    G[e.from].PUSH(edge_index);
+    G[e.to].PUSH(edge_index);
 }
 
 inline int floe_out_index(int floe, int n) { return 2 + n + floe; }
@@ -107,19 +107,17 @@ inline int floe_in_index(int floe, int n) { return 2 + floe; }
 
 int main()
 {
-    TESTS
+    CASE
     {
-        int n;
-        float d;
-        scanf("%d %f", &n, &d);
+        GET(n);
+        GETf(d);
 
         vector<floe> floes;
         int total_penguins = 0;
-        REP(i, 0, n)
+        REP(i, n)
         {
-            int x, y, penguins, strength;
-            scanf("%d %d %d %d", &x, &y, &penguins, &strength);
-            floes.push_back({x, y, penguins, strength});
+            GET(x, y, penguins, strength);
+            floes.PUSH({x, y, penguins, strength});
             total_penguins += penguins;
         }
 
@@ -127,7 +125,7 @@ int main()
         vector<edge> edges;
         int source = 0, target = 1;
         
-        REP(i, 0, n)
+        REP(i, n)
         {
             auto f = floes[i];
 
@@ -141,7 +139,7 @@ int main()
             }
         }
 
-        REP(i, 0, n)
+        REP(i, n)
         REP(j, i+1, n)
         {
             auto f1 = floes[i];
@@ -158,14 +156,14 @@ int main()
 
         // Test if all penguins can collect on a particular floe
         vi accessible_floes;
-        REP(i, 0, n)
+        REP(i, n)
         {
             // Add a target edge from floe i to collect all penguins
             add_edge(G, edges, { floe_in_index(i, n), target, total_penguins, 0 });
 
             if (compute_max_flow(G, edges, source, target) == total_penguins)
             {
-                accessible_floes.push_back(i);
+                accessible_floes.PUSH(i);
             }
 
             // Remove the edge from the target

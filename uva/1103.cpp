@@ -11,9 +11,9 @@ int V[1000];
 void print()
 {
     cout << "********************************" << NL;
-    REP(i, 0, H)
+    REP(i, H)
     {
-        REP(j, 0, W)
+        REP(j, W)
         {
             printf("%d ", I[i][j]);
         }
@@ -49,20 +49,12 @@ void mark_index(int a, int b, int index)
 
     while (!Q.empty())
     {
-        ii next = Q.front();
-        Q.pop();
-        //cout<<"pop: "<<next.first<<","<<next.second<<NL;
-
-        //print();
-        //REP(i, 0, 1000000000);
-
+        ii next = FRONT(Q);
         REPI(i, next.first - 1, next.first + 1)
         REPI(j, next.second - 1, next.second + 1)
         {
-            //cout<<"check: "<<i<<","<<j<<NL;
             if (i >= 0 && i < H && j >= 0 && j < W && !(i == next.first && j == next.second) && I[i][j] == 0)
             {
-                //cout<<"push: "<<i<<","<<j<<NL;
                 I[i][j] = index;
                 Q.push(make_pair(i, j));
             }
@@ -73,8 +65,8 @@ void mark_index(int a, int b, int index)
 void mark()
 {
     int next_index = 1;
-    REP(i, 0, H)
-    REP(j, 0, W)
+    REP(i, H)
+    REP(j, W)
     {
         if (I[i][j] == 0)
         {
@@ -94,9 +86,7 @@ int traverse_glyph(int a, int b)
 
     while (!Q.empty())
     {
-        ii next = Q.front();
-        Q.pop();
-
+        ii next = FRONT(Q);
         REPI(i, next.first - 1, next.first + 1)
         REPI(j, next.second - 1, next.second + 1)
         {
@@ -121,13 +111,13 @@ int traverse_glyph(int a, int b)
 string find_glyphs()
 {
     string glyphs;
-    REP(i, 0, H)
-    REP(j, 0, W)
+    REP(i, H)
+    REP(j, W)
     {
         if (I[i][j] == 1)
         {
             si holes;
-            glyphs.push_back(glyph[traverse_glyph(i, j)]);
+            glyphs.PUSH(glyph[traverse_glyph(i, j)]);
         }
     }
     sort(ALL(glyphs));
@@ -145,14 +135,14 @@ int main()
         if (H == 0 || W == 0)
             break;
 
-        REP(i, 0, H)
+        REP(i, H)
         {
             string line;
             cin >> line;
-            REP(j, 0, W)
+            REP(j, W)
             {
                 int value = V[line[j]];
-                REP(k, 0, 4)
+                REP(k, 4)
                 {
                     I[i + 1][(4 * j) + k + 1] = (value & (1 << (4 - (k + 1)))) > 0 ? 1 : 0;
                 }

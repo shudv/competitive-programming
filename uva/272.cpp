@@ -19,7 +19,7 @@ int main()
             }
             else
             {
-                os.push_back(is[i]);
+                os.PUSH(is[i]);
             }
         }
         cout << os << endl;

@@ -29,8 +29,7 @@ int compute_max_flow(
         int increase_in_flow = 0;
         while (!bfs_queue.empty())
         {
-            auto um = bfs_queue.front();
-            bfs_queue.pop();
+            auto um = FRONT(bfs_queue);
             int found_vertex = um.first;
             int maximum_flow = um.second;
 

@@ -35,9 +35,9 @@ int monkey_index(int monkey)
 inline void add_edge(const edge &e)
 {
     int edge_index = edges.size();
-    edges.push_back(e);
-    G[e.from].push_back(edge_index);
-    G[e.to].push_back(edge_index);
+    edges.PUSH(e);
+    G[e.from].PUSH(edge_index);
+    G[e.to].PUSH(edge_index);
 }
 
 int compute_max_flow(
@@ -59,8 +59,7 @@ int compute_max_flow(
         int increase_in_flow = 0;
         while (!bfs_queue.empty())
         {
-            auto um = bfs_queue.front();
-            bfs_queue.pop();
+            auto um = FRONT(bfs_queue);
             int found_vertex = um.first;
             int maximum_flow = um.second;
 
@@ -136,7 +135,7 @@ void append_slot(vii &slots, ii slot)
 {
     if (slots.size() == 0 || slots[slots.size() - 1].second < slot.first)
     {
-        slots.push_back(slot);
+        slots.PUSH(slot);
     }
     else if (slots[slots.size() - 1].second == slot.first)
     {
@@ -154,8 +153,7 @@ int main()
         G.assign(505, empty);
         edges.clear();
 
-        int n, m;
-        scanf("%d %d", &n, &m);
+        GET(n, m);
         if (n == 0)
             break;
 
@@ -167,39 +165,38 @@ int main()
             int end;
         } drinking_slot;
         vector<drinking_slot> drinking_slots;
-        REP(i, 0, n)
+        REP(i, n)
         {
-            int v, a, b;
-            scanf("%d %d %d", &v, &a, &b);
+            GET(v, a, b);
             add_edge({source, monkey_index(i), v, 0});
             total_requirement += v;
-            drinking_slots.push_back({v, a, b});
+            drinking_slots.PUSH({v, a, b});
         }
 
         vi interval_markers;
         vi duplicate_interval_markers;
         TR(slot, drinking_slots)
         {
-            duplicate_interval_markers.push_back(slot.start);
-            duplicate_interval_markers.push_back(slot.end);
+            duplicate_interval_markers.PUSH(slot.start);
+            duplicate_interval_markers.PUSH(slot.end);
         }
 
         // Remove duplicates
         sort(ALL(duplicate_interval_markers));
-        interval_markers.push_back(duplicate_interval_markers[0]);
+        interval_markers.PUSH(duplicate_interval_markers[0]);
         REP(i, 1, duplicate_interval_markers.size())
         {
             if (duplicate_interval_markers[i] == interval_markers[interval_markers.size() - 1])
                 continue;
-            interval_markers.push_back(duplicate_interval_markers[i]);
+            interval_markers.PUSH(duplicate_interval_markers[i]);
         }
 
-        REP(i, 0, interval_markers.size() - 1)
+        REP(i, interval_markers.size() - 1)
         {
             add_edge({time_slot_index(i), target, m * (interval_markers[i + 1] - interval_markers[i]), 0});
         }
 
-        REP(i, 0, drinking_slots.size())
+        REP(i, drinking_slots.size())
         {
             auto slot = drinking_slots[i];
             int slot_start = binary_search(interval_markers, slot.start, 0, interval_markers.size() - 1);
@@ -214,7 +211,7 @@ int main()
         {
             printf("Case %d: Yes\n", case_no);
             vvii slots(MAXN);
-            REP(i, 0, interval_markers.size() - 1)
+            REP(i, interval_markers.size() - 1)
             {
                 int interval_index = time_slot_index(i);
                 int range = interval_markers[i + 1] - interval_markers[i];
@@ -248,7 +245,7 @@ int main()
                 }
             }
 
-            REP(i, 0, n)
+            REP(i, n)
             {
                 printf("%d", slots[i].size());
                 TR(slot, slots[i])

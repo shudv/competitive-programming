@@ -71,5 +71,7 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "thread": "cpp"
-    }
+    },
+    "files.autoSave": "afterDelay",
+    "C_Cpp.intelliSenseEngine": "Default"
 }

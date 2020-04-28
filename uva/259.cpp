@@ -15,9 +15,9 @@ bool fin = false;
 void add_edge(const edge &e)
 {
     int edge_index = edges.size();
-    edges.push_back(e);
-    G[e.from].push_back(edge_index);
-    G[e.to].push_back(edge_index);
+    edges.PUSH(e);
+    G[e.from].PUSH(edge_index);
+    G[e.to].PUSH(edge_index);
 }
 
 char app_name(int index)
@@ -48,8 +48,7 @@ int compute_max_flow()
 
         while (!q.empty())
         {
-            auto um = q.front();
-            q.pop();
+            auto um = FRONT(q);
             int u = um.first;
             visited_vertices.insert(u);
             int minimum_flow = um.second;
@@ -108,7 +107,7 @@ void solve()
 {
     // Add a common target vertex for all machines
     REPI(c, '0', '9')
-    add_edge({machine_index(c), 1, 1, 0});
+        add_edge({machine_index(c), 1, 1, 0});
 
     int flow = compute_max_flow();
     if (flow == application_count)
@@ -162,12 +161,12 @@ int main()
             int count = line[1] - '0';
             string machines = line.substr(3);
 
-            REP(i, 0, count)
+            REP(i, count)
             {
                 application_count++;
                 int app_vertex_index = app_index(application, i);
                 add_edge({0, app_vertex_index, 1, 0});
-                REP(j, 0, machines.size() - 1)
+                REP(j, machines.size() - 1)
                 {
                     add_edge({app_vertex_index, machine_index(machines[j]), 1, 0});
                 }
