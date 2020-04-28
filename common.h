@@ -26,3 +26,4 @@ typedef vector<vii>          vvii;
 #define TESTS                int tests; scanf("%d", &tests); REPI(test_index, 1, tests)
 #define FIELD(w)             setfill(' ') << setw(w)
 #define HAS(c, it)           ((c).find(it) != (c).end())
+#define IN(x)                int x; scanf("%d", &x)
