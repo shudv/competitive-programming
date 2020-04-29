@@ -8,6 +8,7 @@ typedef long long               ll;
 typedef unsigned long long      ull;
 typedef vector<int>             vi;
 typedef queue<int>              qi;
+typedef stack<int>              sti;
 typedef priority_queue<int>     pqi;
 typedef vector<vi>              vvi;
 typedef set<int>                si;

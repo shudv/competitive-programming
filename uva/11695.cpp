@@ -34,41 +34,64 @@ int get_farthest_vertex(const vvi &G, int u)
     return farthest_vertex;
 }
 
-void calculate_vertex_info(const vvi &G, int u, vector<vertex_info> &vertex_info)
+void calculate_vertex_info(const vvi &G, int root, vector<vertex_info> &vertex_info)
 {
-    int deepest_child_depth = -1;
-    int second_deepest_child_depth = -1;
-    int largest_child_diameter = -1;
-    TR(v, G[u])
+    REP(i, G.size()) vertex_info[i].parent = NONE;
+
+    sti s;
+    s.push(root);
+
+    while (!s.empty())
     {
-        if (v != vertex_info[u].parent)
+        int u = s.top();
+        bool children_processing_pending = false;
+
+        TR(v, G[u])
         {
-            vertex_info[v].parent = u;
-            calculate_vertex_info(G, v, vertex_info);
-
-            int d = vertex_info[v].depth;
-            if (d > deepest_child_depth)
+            if (vertex_info[v].parent == NONE)
             {
-                second_deepest_child_depth = deepest_child_depth;
-                deepest_child_depth = d;
-            }
-            else if (d > second_deepest_child_depth && d <= deepest_child_depth)
-            {
-                second_deepest_child_depth = d;
-            }
-
-            if (vertex_info[v].diameter > largest_child_diameter)
-            {
-                largest_child_diameter = vertex_info[v].diameter;
+                vertex_info[v].parent = u;
+                s.push(v);
+                children_processing_pending = true;
+                break;
             }
         }
+
+        if (!children_processing_pending)
+        {
+            int deepest_child_depth = -1;
+            int second_deepest_child_depth = -1;
+            int largest_child_diameter = -1;
+
+            TR(v, G[u])
+            {
+                if (v != vertex_info[u].parent)
+                {
+                    int d = vertex_info[v].depth;
+                    if (d > deepest_child_depth)
+                    {
+                        second_deepest_child_depth = deepest_child_depth;
+                        deepest_child_depth = d;
+                    }
+                    else if (d > second_deepest_child_depth && d <= deepest_child_depth)
+                    {
+                        second_deepest_child_depth = d;
+                    }
+
+                    if (vertex_info[v].diameter > largest_child_diameter)
+                        largest_child_diameter = vertex_info[v].diameter;
+                }
+
+                vertex_info[u].depth = deepest_child_depth + 1;
+
+                int diameter_length_via_u = deepest_child_depth + second_deepest_child_depth + 2;
+                int diameter_length_with_u_as_endpoint = deepest_child_depth + 1;
+                vertex_info[u].diameter = MAX(largest_child_diameter, diameter_length_with_u_as_endpoint, diameter_length_via_u);
+            }
+
+            s.pop();
+        }
     }
-
-    vertex_info[u].depth = deepest_child_depth + 1;
-
-    int diameter_length_via_u = deepest_child_depth + second_deepest_child_depth + 2;
-    int diameter_length_with_u_as_endpoint = deepest_child_depth + 1;
-    vertex_info[u].diameter = MAX(largest_child_diameter, diameter_length_with_u_as_endpoint, diameter_length_via_u);
 }
 
 // Find midpoint of subtree rooted at root
@@ -156,11 +179,9 @@ int main()
 
         // Calculate depth and diameter information with both endpoints
         vector<vertex_info> vertex_info_1(G.size());
-        vertex_info_1[diameter_start].parent = NONE;
         calculate_vertex_info(G, diameter_start, vertex_info_1);
 
         vector<vertex_info> vertex_info_2(G.size());
-        vertex_info_2[diameter_end].parent = NONE;
         calculate_vertex_info(G, diameter_end, vertex_info_2);
 
         // Find the edge along the diameter splitting which can yield the least possible diameter
