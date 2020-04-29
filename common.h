@@ -60,7 +60,7 @@ typedef vector<vii>             vvii;
 #define MAX2(a, b)              max(a, b)
 #define MAX3(a, b, c)           MAX2(MAX2(a, b), c)
 #define MAX4(a, b, c, d)        MAX2(MAX3(a, b, c), d)
-#define MIN(...)                OVERLOAD(MAX, __VA_ARGS__)
+#define MIN(...)                OVERLOAD(MIN, __VA_ARGS__)
 #define MIN2(a, b)              min(a, b)
 #define MIN3(a, b, c)           MIN2(MIN2(a, b), c)
 #define MIN4(a, b, c, d)        MIN2(MIN3(a, b, c), d)

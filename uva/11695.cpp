@@ -196,7 +196,7 @@ int main()
             // diameter of subtree rooted at parent[v] if v --> parent[v] edge is split
             int d2 = vertex_info_2[vertex_info_1[v].parent].diameter;
 
-            // calculate the diameter of any tree by joining the two subtrees
+            // calculate the minmum possible diameter of the tree created by joining the two subtrees
             int possible_diameter = MAX(((d1 + 1) / 2) + ((d2 + 1) / 2) + 1, d1, d2);
 
             if (possible_diameter < least_possible_diameter)
