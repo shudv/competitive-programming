@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#pragma region types_and_macros
+
 // Types
 typedef long long               ll;
 typedef unsigned long long      ull;
@@ -19,6 +21,9 @@ typedef vector<vii>             vvii;
 // Constants
 #define NL                      "\n"
 #define INF                     2000000000
+#define NONE                    -1
+#define TRUE                    1
+#define FALSE                   0
 
 // Macros for defining and reading one or more integers
 #define GET(...)                OVERLOAD(GET, __VA_ARGS__)
@@ -49,6 +54,16 @@ typedef vector<vii>             vvii;
 #define ALL(c)                  c.begin(), c.end()
 #define HAS(c, it)              ((c).find(it) != (c).end())
 
+// Max, Min
+#define MAX(...)                OVERLOAD(MAX, __VA_ARGS__)
+#define MAX2(a, b)              max(a, b)
+#define MAX3(a, b, c)           MAX2(MAX2(a, b), c)
+#define MAX4(a, b, c, d)        MAX2(MAX3(a, b, c), d)
+#define MIN(...)                OVERLOAD(MAX, __VA_ARGS__)
+#define MIN2(a, b)              min(a, b)
+#define MIN3(a, b, c)           MIN2(MIN2(a, b), c)
+#define MIN4(a, b, c, d)        MIN2(MIN3(a, b, c), d)
+
 // Miscellaneous
 #define CASE                    GET(_cases); REPI(case_number, 1, _cases)
 #define FIELD(w)                setfill(' ') << setw(w)
@@ -59,3 +74,5 @@ typedef vector<vii>             vvii;
 #define OVERLOAD(m, ...)        CAT(m, VA_SIZE(__VA_ARGS__))(__VA_ARGS__)
 #define CAT(m, n)               CAT_(m, n)
 #define CAT_(a, b)              a ## b
+
+#pragma endregion
