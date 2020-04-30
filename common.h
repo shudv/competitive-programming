@@ -40,6 +40,7 @@ typedef vector<vii>             vvii;
 
 // Iteration macros
 #define REP(...)                OVERLOAD(REP, __VA_ARGS__)
+#define REP1(a)                 REP2(i, a)
 #define REP2(i, a)              REP3(i, 0, a)
 #define REP3(i, a, b)           for(int i=int(a); i<int(b); i++)
 #define REPI(...)               OVERLOAD(REPI, __VA_ARGS__)
