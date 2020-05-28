@@ -38,6 +38,11 @@ typedef vector<vii>             vvii;
 #define GETf1(a)                float a; scanf("%f", &a)
 #define GETf2(a, b)             GETf1(a); GETf1(b)
 
+// Macros for defining and reading one or more float values
+#define GETf(...)               OVERLOAD(GETf, __VA_ARGS__)
+#define GETf1(a)                float a; scanf("%f", &a)
+#define GETf2(a, b)             GETf1(a); GETf1(b)
+
 // Iteration macros
 #define REP(...)                OVERLOAD(REP, __VA_ARGS__)
 #define REP1(a)                 REP2(i, a)
@@ -55,6 +60,10 @@ typedef vector<vii>             vvii;
 #define TR(it, c)               for (auto &it : c)
 #define ALL(c)                  c.begin(), c.end()
 #define HAS(c, it)              ((c).find(it) != (c).end())
+#define RES(...)                OVERLOAD(RES, __VA_ARGS__)
+#define RES1(v)                 RES2(v, 0)
+#define RES2(v, n)              v.clear(); v.resize(n)
+#define RES3(v, n, c)           v.assign(n, c)
 
 // Max, Min
 #define MAX(...)                OVERLOAD(MAX, __VA_ARGS__)
@@ -65,6 +74,9 @@ typedef vector<vii>             vvii;
 #define MIN2(a, b)              min(a, b)
 #define MIN3(a, b, c)           MIN2(MIN2(a, b), c)
 #define MIN4(a, b, c, d)        MIN2(MIN3(a, b, c), d)
+
+// Graph specific
+#define OTHER(e, u)             (e.first == u ? e.second : e.first)
 
 // Miscellaneous
 #define CASE                    GET(_cases); REPI(case_number, 1, _cases)
