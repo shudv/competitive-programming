@@ -51,6 +51,7 @@ typedef vector<vii>             vvii;
 #define REPI(...)               OVERLOAD(REPI, __VA_ARGS__)
 #define REPI2(i, a)             REPI3(i, 1, a)
 #define REPI3(i, a, b)          REP3(i, a, b+1)
+#define LOOP                    while (true)
 
 // STL macros
 #define PAIR                    make_pair
