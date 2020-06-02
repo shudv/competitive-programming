@@ -61,6 +61,8 @@ typedef vector<vii>             vvii;
 #define TR(it, c)               for (auto &it : c)
 #define ALL(c)                  c.begin(), c.end()
 #define HAS(c, it)              ((c).find(it) != (c).end())
+#define PQC(t, c)               class c { public: bool operator()(const t &i1, const t &i2)
+#define PQ(t, c)                priority_queue<t, vector<t>, c>
 #define RES(...)                OVERLOAD(RES, __VA_ARGS__)
 #define RES1(v)                 RES2(v, 0)
 #define RES2(v, n)              v.clear(); v.resize(n)

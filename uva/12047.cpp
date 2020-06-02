@@ -1,16 +1,12 @@
 #include "../common.h"
 
 typedef pair<int, ii> queue_vertex;
-class vertex_compare
+PQC(queue_vertex, qvc)
 {
-public:
-    bool operator()(const queue_vertex &qv1, const queue_vertex &qv2)
-    {
-        ii dt1 = qv1.second;
-        ii dt2 = qv2.second;
-        return dt1.first == dt2.first ? dt1.second > dt2.second : dt1.first < dt2.first;
-    }
-};
+    ii dt1 = i1.second;
+    ii dt2 = i2.second;
+    return dt1.first == dt2.first ? dt1.second > dt2.second : dt1.first < dt2.first;
+}};
 
 int main()
 {
@@ -26,7 +22,7 @@ int main()
         }
 
         vii dist_toll(N + 1, PAIR(INF, -1));
-        priority_queue<queue_vertex, vector<queue_vertex>, vertex_compare> pq;
+        PQ(queue_vertex, qvc) pq;
         dist_toll[s] = PAIR(0, -1);
         pq.push(PAIR(s, dist_toll[s]));
 
